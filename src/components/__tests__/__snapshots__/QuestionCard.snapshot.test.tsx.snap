@@ -1,0 +1,35 @@
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+
+exports[`matches snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="rounded-lg border bg-card text-card-foreground shadow-sm"
+  >
+    <div
+      class="flex flex-col space-y-1.5 p-6 pb-2"
+    >
+      <h3
+        class="font-semibold tracking-tight text-lg"
+      >
+        sarahedo
+      </h3>
+      <p
+        class="text-sm text-slate-500"
+      >
+        4/30/17, 4:16 PM
+      </p>
+    </div>
+    <div
+      class="p-6 pt-0"
+    >
+      <a
+        class="inline-flex h-10 w-full items-center justify-center rounded-md border border-slate-300 bg-white px-4 text-sm font-medium hover:bg-slate-100"
+        data-discover="true"
+        href="/questions/q1"
+      >
+        Show
+      </a>
+    </div>
+  </div>
+</DocumentFragment>
+`;
