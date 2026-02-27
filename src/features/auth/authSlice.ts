@@ -2,32 +2,8 @@ import { createAsyncThunk, createSlice, type PayloadAction } from '@reduxjs/tool
 import type { AuthState } from '@/types';
 import type { RootState } from '@/app/store';
 
-const AUTH_USER_STORAGE_KEY = 'employee-polls:authed-user';
-
-function getStoredAuthedUser(): string | null {
-  if (typeof window === 'undefined') return null;
-  try {
-    return window.sessionStorage.getItem(AUTH_USER_STORAGE_KEY);
-  } catch {
-    return null;
-  }
-}
-
-function persistAuthedUser(userId: string | null): void {
-  if (typeof window === 'undefined') return;
-  try {
-    if (userId) {
-      window.sessionStorage.setItem(AUTH_USER_STORAGE_KEY, userId);
-    } else {
-      window.sessionStorage.removeItem(AUTH_USER_STORAGE_KEY);
-    }
-  } catch {
-    // Ignore storage failures to keep auth flow functional.
-  }
-}
-
 const initialState: AuthState = {
-  authedUserId: getStoredAuthedUser(),
+  authedUserId: null,
   redirectAfterLogin: null,
   status: 'idle',
   error: null,
@@ -54,7 +30,6 @@ const authSlice = createSlice({
       state.error = null;
       state.redirectAfterLogin = null;
       state.status = 'idle';
-      persistAuthedUser(null);
     },
     setRedirectAfterLogin(state, action: PayloadAction<string | null>) {
       state.redirectAfterLogin = action.payload;
@@ -70,7 +45,6 @@ const authSlice = createSlice({
         state.status = 'idle';
         state.authedUserId = action.payload;
         state.error = null;
-        persistAuthedUser(action.payload);
       })
       .addCase(login.rejected, (state, action) => {
         state.status = 'failed';
