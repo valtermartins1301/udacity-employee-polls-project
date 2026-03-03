@@ -4,6 +4,7 @@ Employee Polls is a React + Redux application for voting on "Would You Rather" s
 
 ## Tech Stack
 
+- Node v22.21.1
 - Vite + React + TypeScript
 - Redux Toolkit + React Redux
 - React Router
